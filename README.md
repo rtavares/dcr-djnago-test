@@ -22,6 +22,8 @@ If you have [Make](https://www.gnu.org/software/make/) installed on your system 
 ### Exercise 1 - Complete Stats View
 - Added the query to calculate the stats to the view.
 ### Exercise 2 - Integrate with API
+- Added `requests` package to call the API
+- In `manage` command, get data from the API
 ### Exercise 3 - Store additional Data
 
 
