@@ -1,19 +1,28 @@
-import json
-import os
-
+import requests
 from countries.models import Country, Region
-from django.conf import settings
 from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
     help = "Loads country data from a JSON file."
 
-    IMPORT_FILE = os.path.join(settings.BASE_DIR, "..", "data", "countries.json")
+    DATA_SOURCE_URL = "https://storage.googleapis.com/dcr-django-test/countries.json"
 
     def get_data(self):
-        with open(self.IMPORT_FILE) as f:
-            data = json.load(f)
+        data = []
+        try:
+            response = requests.get(self.DATA_SOURCE_URL)
+        except requests.exceptions.HTTPError as http_err:
+            raise RuntimeError(f"HTTP error occurred: {http_err}") from http_err
+        except requests.exceptions.ConnectionError as conn_err:
+            raise RuntimeError("Failed to connect to the server.") from conn_err
+        except requests.exceptions.Timeout as timeout_err:
+            raise RuntimeError("The request timed out.") from timeout_err
+        except requests.exceptions.RequestException as req_err:
+            raise RuntimeError(f"An unexpected error occurred: {req_err}") from req_err
+        else:
+            data = response.json()
+
         return data
 
     def handle(self, *args, **options):

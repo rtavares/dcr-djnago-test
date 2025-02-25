@@ -7,6 +7,7 @@ requires-python = ">=3.11.1"
 dependencies = [
     "django==2.2.17",
     "pytz==2020.5",
+    "requests>=2.32.3",
     "sqlparse==0.4.1",
 ]
 
