@@ -18,7 +18,9 @@ If you have [Make](https://www.gnu.org/software/make/) installed on your system 
 ### Setup
 - Repo cloned, remote configured, venv created.
 - To setup the environment using `uv`: `uv sync`
+- The project have a welcome page on the root url, [localhost:8000](http://localhost:8000) .
 ### Exercise 1 - Complete Stats View
+- Added the query to calculate the stats to the view.
 ### Exercise 2 - Integrate with API
 ### Exercise 3 - Store additional Data
 
