@@ -1,8 +1,13 @@
+from django.db.models import Count, Sum
 from django.http import JsonResponse
 
+from .models import Region
 
 def stats(request):
-    # TODO - Provide name, number_countries and total_population for each region
-    response = {"regions": []}
+    """ Return stats by region """
+    regions_stats = Region.objects.annotate(
+        number_countries=Count('countries'),
+        total_population=Sum('countries__population'),
+    ).values('name', 'number_countries', 'total_population')
 
-    return JsonResponse(response)
+    return JsonResponse({'regions': list(regions_stats)})
