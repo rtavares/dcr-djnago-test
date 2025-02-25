@@ -1,7 +1,7 @@
 from django.db.models import Count, Sum
 from django.http import JsonResponse
 
-from .models import Region
+from .models import Country, Region
 
 
 def stats(request):
@@ -12,3 +12,13 @@ def stats(request):
     ).values("name", "number_countries", "total_population")
 
     return JsonResponse({"regions": list(regions_stats)})
+
+
+def get_countries(request):
+    """Return a list of countries"""
+    # TBD: Get the region description
+    # We have to be careful when using .all() in a real scenario
+    # Pagination would be a good first approach.
+    countries = Country.objects.all()
+
+    return JsonResponse({"countries": list(countries.values())})
