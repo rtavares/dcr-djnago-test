@@ -46,5 +46,11 @@ If you have [Make](https://www.gnu.org/software/make/) installed on your system 
 - Added a new endpoint to list the countries: [http://localhost:8000/countries/countries/](http://localhost:8000/countries/countries/)
   - This is an extra feature, not required by the exercise.
  
+## Final note:
+We could have used Django Rest Framework to handle the API.   
+However, once it was not required, nor have a reference to freedom of technology adoption, we went with the approach already present in the Project.
+
+Thank you for reading and evaluating!
+
 -------
 
